@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    background-color: rgba(118, 227, 126, 0.401);
+    padding: 100px;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 4rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+header div {
+    display: flex;
+    width: 45%;
+    justify-content: space-around;
+}
+
+header div nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    width: 450px;
+}
+
+
+header div nav ul li a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.25rem;
+}
+
+main {
+    width: 100%;
+    text-align: left;
+    height: 1300px;
+    padding: 50px;
+}
+
+main select {
+    appearance: none;
+    height: 50px;
+    border: none;
+    background: none;
+
+}
+
+main .contenedor-main {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    margin-top: 100px;
+}
+
+main .contenedor-main > * {
+    width: 30%;
+    text-align: center;
+    height: 1000px;
+    border-radius: 15px;
+    box-shadow: 10px 10px  rgba(0, 0, 0, 0.10);
+}
+
+main .contenedor-main section h2 {
+    background: rgba(0, 0, 0, 0.059);
+    font-size: 2rem;
+    padding: 10px;
+}
+
+
+main .contenedor-main section article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 450px;
+    padding: 15px;
+    margin: 15px 0px;
+}
+main .contenedor-main section article > * {
+    padding: 10px;
+}
+main .contenedor-main section article h3 {
+    font-size: 1.5rem;
+}
+main .contenedor-main section article img {
+    width: 100%;
+}
+main .contenedor-main section article .fecha {
+    align-self: end;
+}

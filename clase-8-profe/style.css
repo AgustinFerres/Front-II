@@ -1,0 +1,82 @@
+:root {
+  --contador: #ffdcb7;
+  --texto: #ffb3b3;
+  --tarjeta: #94ff90;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.section {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 0;
+  gap: 1em;
+}
+
+.contador {
+  background-color: var(--contador);
+}
+
+p,
+button {
+  font-size: 1.3em;
+}
+
+.btn {
+  padding: 0.5em 0.7em;
+  border: 1px solid black;
+  border-radius: 0.3em;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(193, 255, 179);
+}
+
+.verde {
+  background-color: rgb(142, 255, 142);
+  padding: 0.5em;
+}
+
+.rojo {
+  background-color: rgb(255, 111, 111);
+  padding: 0.5em;
+}
+
+.texto {
+  background-color: var(--texto);
+}
+
+.tarjeta {
+  background-color: var(--tarjeta);
+}
+
+.card-container {
+  display: flex;
+  margin: 2em;
+  text-align: center;
+  gap: 1em;
+}
+.card {
+  padding: 0.5em;
+}
+
+.card.economia {
+  background-color: red;
+}
+
+.card.deportes {
+  background-color: rgb(123, 123, 255);
+}
+
+.ocultar {
+  display: none;
+}

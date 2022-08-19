@@ -1,0 +1,27 @@
+body {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    background-image: url(../img/janken-queen.jpg);
+    background-repeat: no-repeat;
+    background-size: 100vw 110vh;
+    background-position: center;
+}
+div{
+    display: flex;
+    width: 800px;
+    justify-content: space-between;
+}
+article {
+    text-align: center;
+}
+h2 {
+    font-size: 4rem;
+    color: white;
+}
+p {
+    font-size: 3rem;
+    color: white;
+}
