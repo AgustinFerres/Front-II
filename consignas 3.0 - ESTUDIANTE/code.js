@@ -37,13 +37,15 @@ cambiarTema.addEventListener("click", alternarColorTema);
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
 
-  datosPersona.nombre = prompt('Ingresa tu nombre');
+  const nombre = prompt('Ingresa tu nombre');
+  const anioNacimiento = Number(prompt('Ingresa tu año de nacimiento'));
+  const ciudad = prompt('Ingresa tu ciudad');
+  const interesPorJavascript = confirm('Te interesa java');
 
-  datosPersona.edad = (2022 - Number(prompt('Ingresa tu año de nacimiento')));
-
-  datosPersona.ciudad = prompt('Ingresa tu ciudad');
-
-  datosPersona.interesPorJs = confirm('Te interesa java') ? 'Si' : 'No'; 
+  datosPersona.nombre = nombre;
+  datosPersona.edad = 2022 - anioNacimiento;
+  datosPersona.ciudad = ciudad;
+  datosPersona.interesPorJs = interesPorJavascript ? 'Si' : 'No'; 
 
 }
 
