@@ -43,7 +43,7 @@ function obtenerDatosDelUsuario() {
 
   datosPersona.ciudad = prompt('Ingresa tu ciudad');
 
-  datosPersona.interesPorJs = (confirm('Te interesa java') ? 'Si' : 'No'); 
+  datosPersona.interesPorJs = confirm('Te interesa java') ? 'Si' : 'No'; 
 
 }
 
@@ -52,14 +52,12 @@ function renderizarDatosUsuario() {
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
   
-  const contenedor = document.querySelector('.card-header')
+  const nodosSpan = document.querySelectorAll('.card-header h3 span');
 
-  contenedor.innerHTML = `
-  <h3>Nombre: <span id="nombre">${datosPersona.nombre}</span></h3>
-  <h3>Edad: <span id="edad">${datosPersona.edad}</span></h3>
-  <h3>Ciudad: <span id="ciudad">${datosPersona.ciudad}</span></h3>
-  <h3>Interes en Javascript: <span id="javascript">${datosPersona.interesPorJs}</span></h3>
-  `;
+  const arrayDatosPersona = Object.values(datosPersona);
+  
+  nodosSpan.forEach((item, i) => item.textContent = arrayDatosPersona[i]);
+  
 }
 
 
@@ -70,12 +68,15 @@ function recorrerListadoYRenderizarTarjetas() {
   contenedor.innerHTML = ``;
 
   listado.forEach(materia =>{
+
     contenedor.innerHTML += `
+
       <article class='caja' >
         <img src='${materia.imgUrl}' alt='${materia.lenguajes}'/>
         <p class='lenguajes'> Lenguajes: ${materia.lenguajes}</p>
         <p class='bimestre'> Bimestre: ${materia.bimestre}</p>
       </article>
+
     `;
   });
 }
@@ -84,7 +85,7 @@ function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
   const sitio = document.querySelector('#sitio');
 
-  sitio.classList.toggle('dark')
+  sitio.classList.toggle('dark');
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
@@ -93,7 +94,7 @@ document.addEventListener('keypress', function(e){
   
   const parrafo = document.querySelector('#sobre-mi');
 
-  if(e.key === 'f'){
+  if(e.key === 'f' || e.key === 'F'){
     parrafo.classList.remove('oculto');
   }
-})
+});
