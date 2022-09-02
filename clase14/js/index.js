@@ -13,24 +13,39 @@ REQUERIMIENTOS
 const form = document.querySelector('form');
 const input = document.querySelector('#comentario');
 const contenedorComentarios = document.querySelector('.comentarios');
+const botonBorrar = document.querySelector('#borrar');
 
 let arrayComentarios = JSON.parse(localStorage.getItem("comentario"));
 
 if (arrayComentarios) {
-    arrayComentarios.forEach(comentario => contenedorComentarios.innerHTML += `<p>${comentario}</p>`);
+    arrayComentarios.forEach(item => contenedorComentarios.innerHTML += `<p>${item.comentario}<span> ${item.horario}</span></p>`);
 } else {
     arrayComentarios = [];
 }
-console.log(arrayComentarios);
 
 form.addEventListener("submit", function(e){
     e.preventDefault();
 
-    arrayComentarios.push(input.value.trim());
+    objetoComentario();
 
     localStorage.setItem("comentario", JSON.stringify(arrayComentarios));
 
-    
-    arrayComentarios.forEach(comentario => contenedorComentarios.innerHTML += `<p>${comentario}</p>`);
-
+    contenedorComentarios.innerHTML = '';
+    arrayComentarios.forEach(item => contenedorComentarios.innerHTML += `<p>${item.comentario}<span> ${item.horario}</span></p>`);
 })
+
+botonBorrar.addEventListener('click', function(){
+    localStorage.removeItem('comentario', JSON.stringify(arrayComentarios));
+    location.reload();
+})
+
+
+function objetoComentario(){
+    let fecha = new Date();
+    let horario = `${fecha.toDateString().slice(4,10)} ${fecha.toTimeString().slice(0,8)}`;
+
+    arrayComentarios.push({
+        comentario: input.value.trim(),
+        horario,
+    })
+}
