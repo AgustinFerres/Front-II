@@ -42,7 +42,8 @@ btn.addEventListener('click', function(e){
         //manipulamos la respuesta
         console.log(data);
         renderizarDatosUsuario(data)
-    });
+    })
+    .catch(err => alert(`NO FUNCO PIBE, ${err}`));
 
 function renderizarDatosUsuario(datos) {
     const contenedor = document.querySelector('.contenedor');

@@ -48,3 +48,11 @@ div.tarjeta {
     display: flex;
     flex-wrap: wrap;
 }
+
+
+@media (max-width: 900px) {
+	.contenedor {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
+}
