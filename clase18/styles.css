@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: lightblue;
+}
+
+div {
+    width: 400px;
+    background: white;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+div > * {
+    margin: 10px;
+}
