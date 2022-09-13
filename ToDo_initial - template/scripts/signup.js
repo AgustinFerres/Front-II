@@ -16,14 +16,24 @@ window.addEventListener("load", function () {
 	form.addEventListener("submit", function (e) {
 		e.preventDefault();
 
-		const usuario = {
-			firstName: inputNombre.value,
-			lastName: inputApellido.value,
-			email: inputEmail.value,
-			password: inputPassword.value,
-		};
+		let usuario;
 
-		realizarRegister(usuario);
+		if(validarTexto(inputNombre)
+			&& validarTexto(inputApellido)
+			&& validarEmail(inputEmail)
+			&& validarContrasenia(inputPassword)
+			&& compararContrasenias(inputPassword, inputPasswordRepetida))
+			{
+				usuario = {
+					firstName: normalizarTexto(inputNombre),
+					lastName: normalizarTexto(inputApellido),
+					email: normalizarEmail(inputEmail),
+					password: inputPassword.value,
+				};
+				
+				realizarRegister(usuario);
+		}
+
 	});
 
 	/* -------------------------------------------------------------------------- */

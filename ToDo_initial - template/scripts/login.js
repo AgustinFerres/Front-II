@@ -26,7 +26,7 @@ window.addEventListener("load", function () {
         e.preventDefault();
 
         const usuario = {
-            email: inputEmail.value,
+            email: normalizarEmail(inputEmail),
             password: inputPassword.value,
         }
 
