@@ -69,6 +69,10 @@ form label {
     margin-bottom: .3rem;
 }
 
+.error {
+    color: red;
+}
+
 form input {
     border-radius: 100vh;
     margin-bottom: 1rem;

@@ -20,7 +20,7 @@ window.addEventListener("load", function () {
   const contenedorTareasPendientes = this.document.querySelector('.tareas-pendientes');
   const contenedorTareasTerminadas = this.document.querySelector('.tareas-terminadas');
   const formCrearTarea = this.document.querySelector('form.nueva-tarea');
-  const nodoTextoTarea = this.document.querySelector('#nuevaTarea')
+  const nodoTextoTarea = this.document.querySelector('#nuevaTarea');
 
 	/* -------------------------------------------------------------------------- */
 	/*                          FUNCIÓN 1 - Cerrar sesión                         */
@@ -71,7 +71,12 @@ window.addEventListener("load", function () {
 
     fetch(url, config)
     .then(res => res.json())
-    .then(data => renderizarTareas(data))
+    .then(data => {
+      renderizarTareas(data);
+      console.log(data);
+      botonesCambioEstado(data);
+      botonBorrarTarea();
+    })
   }
   consultarTareas();
 
@@ -98,9 +103,9 @@ window.addEventListener("load", function () {
 
     fetch(url, config)
     .then(res => res.json())
-    .then(data => data)
+    .then(data => consultarTareas())
+    
 
-  consultarTareas();
 
   });
 
@@ -129,6 +134,7 @@ window.addEventListener("load", function () {
       </li>
       `
     })
+    
     listadoTareasTerminadas.forEach( tarea => {
       // por cada tarea inyectamos un nodo li
       contenedorTareasTerminadas.innerHTML += `
@@ -151,10 +157,68 @@ window.addEventListener("load", function () {
 	/* -------------------------------------------------------------------------- */
 	/*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
 	/* -------------------------------------------------------------------------- */
-	function botonesCambioEstado() {}
+	function botonesCambioEstado(tarea) {
+
+    const nodoBotonesCambioEstado = document.querySelectorAll('.change');
+    const nodoDescripciones = document.querySelectorAll('.tarea .descripcion .nombre')
+
+    nodoBotonesCambioEstado.forEach((btn, i) => {
+
+      btn.addEventListener('click', function(e){
+
+        const url = ENDPOINTBASE + `/tasks/${btn.getAttribute('id')}`;
+
+        console.log(tarea[i].completed);
+
+        const config = {
+          method: 'PUT',
+          headers: {
+            'content-type': 'application/json',
+            authorization: JWT,
+          },
+          body: JSON.stringify({
+            description: nodoDescripciones[i].value,
+            completed: !tarea[i].completed,
+          })
+        }
+
+        fetch(url, config)
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          consultarTareas()
+        })
+      })
+    })
+  }
+  
+
+  
 
 	/* -------------------------------------------------------------------------- */
 	/*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
 	/* -------------------------------------------------------------------------- */
-	function botonBorrarTarea() {}
+	function botonBorrarTarea() {
+
+    const nodoBotonesBorrar = document.querySelectorAll('.borrar');
+
+    nodoBotonesBorrar.forEach(btn => {
+
+      btn.addEventListener('click', function(e){
+
+        const url = ENDPOINTBASE + `/tasks/${btn.getAttribute('id')}`;
+
+        const config = {
+          method: 'DELETE',
+          headers: {
+            authorization: JWT,
+          },
+        }
+
+        fetch(url, config)
+        .then(res => res.json())
+        .then(data => consultarTareas())
+      })
+    })
+  }
 });
