@@ -73,7 +73,6 @@ window.addEventListener("load", function () {
     .then(res => res.json())
     .then(data => {
       renderizarTareas(data);
-      botonesCambioEstado(data);
       botonBorrarTarea();
     })
   }
@@ -151,12 +150,16 @@ window.addEventListener("load", function () {
       </li>
       `
     })
+
+      
+    botonesCambioEstado();
   }
 
 	/* -------------------------------------------------------------------------- */
 	/*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
 	/* -------------------------------------------------------------------------- */
-	function botonesCambioEstado(tarea) {
+
+	function botonesCambioEstado() {
 
     const nodoBotonesCambioEstado = document.querySelectorAll('.change');
 
@@ -164,10 +167,10 @@ window.addEventListener("load", function () {
 
       btn.addEventListener('click', function(e){
 
-        const url = ENDPOINTBASE + `/tasks/${btn.id}`;
 
         const terminada = btn.classList.contains('incompleta')
 
+        const url = ENDPOINTBASE + `/tasks/${btn.id}`;
 
         const config = {
           method: 'PUT',
@@ -187,9 +190,6 @@ window.addEventListener("load", function () {
     })
   }
   
-
-  
-
 	/* -------------------------------------------------------------------------- */
 	/*                     FUNCIÓN 7 - Eliminar tarea [DELETE]                    */
 	/* -------------------------------------------------------------------------- */
