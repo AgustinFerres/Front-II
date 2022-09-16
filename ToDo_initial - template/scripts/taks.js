@@ -73,7 +73,6 @@ window.addEventListener("load", function () {
     .then(res => res.json())
     .then(data => {
       renderizarTareas(data);
-      console.log(data);
       botonesCambioEstado(data);
       botonBorrarTarea();
     })
@@ -168,7 +167,6 @@ window.addEventListener("load", function () {
 
         const url = ENDPOINTBASE + `/tasks/${btn.getAttribute('id')}`;
 
-        console.log(tarea[i].completed);
 
         const config = {
           method: 'PUT',
@@ -184,10 +182,7 @@ window.addEventListener("load", function () {
 
         fetch(url, config)
         .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          consultarTareas()
-        })
+        .then(data => consultarTareas())
       })
     })
   }
