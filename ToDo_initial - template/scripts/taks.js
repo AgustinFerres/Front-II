@@ -159,13 +159,14 @@ window.addEventListener("load", function () {
 	function botonesCambioEstado(tarea) {
 
     const nodoBotonesCambioEstado = document.querySelectorAll('.change');
-    const nodoDescripciones = document.querySelectorAll('.tarea .descripcion .nombre')
 
-    nodoBotonesCambioEstado.forEach((btn, i) => {
+    nodoBotonesCambioEstado.forEach(btn => {
 
       btn.addEventListener('click', function(e){
 
-        const url = ENDPOINTBASE + `/tasks/${btn.getAttribute('id')}`;
+        const url = ENDPOINTBASE + `/tasks/${btn.id}`;
+
+        const terminada = btn.classList.contains('incompleta')
 
 
         const config = {
@@ -175,8 +176,7 @@ window.addEventListener("load", function () {
             authorization: JWT,
           },
           body: JSON.stringify({
-            description: nodoDescripciones[i].value,
-            completed: !tarea[i].completed,
+            completed: !terminada,
           })
         }
 
