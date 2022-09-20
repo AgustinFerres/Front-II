@@ -72,21 +72,25 @@ window.addEventListener("load", function () {
     fetch(url, config)
     .then(res => res.json())
     .then(data => {
+
+      const contador = document.querySelector('#cantidad-finalizadas');
+      const listadoTareasTerminadas = data.filter( tarea => tarea.completed)
+      contador.textContent = listadoTareasTerminadas.length;
+
       renderizarTareas(data);
-      botonBorrarTarea();
     })
   }
   consultarTareas();
-
+  
 	/* -------------------------------------------------------------------------- */
 	/*                    FUNCIÓN 4 - Crear nueva tarea [POST]                    */
 	/* -------------------------------------------------------------------------- */
-
+  
 	formCrearTarea.addEventListener("submit", function (e) {
     e.preventDefault();
-
+    
     const url = ENDPOINTBASE + '/tasks';
-
+    
     const config = {
       method: 'POST',
       headers: {
@@ -98,37 +102,37 @@ window.addEventListener("load", function () {
         completed: false,
       })
     }
-
+    
     fetch(url, config)
     .then(res => res.json())
     .then(data => consultarTareas())
     
-
-
+    
+    
   });
-
+  
 	/* -------------------------------------------------------------------------- */
 	/*                  FUNCIÓN 5 - Renderizar tareas en pantalla                 */
 	/* -------------------------------------------------------------------------- */
 	function renderizarTareas(listado) {
-
+    
     // filtramos las terminadas
     const listadoTareasTerminadas = listado.filter( item => item.completed)
     const listadoTareasPendientes = listado.filter( item => !item.completed)
-
+    
     contenedorTareasPendientes.innerHTML = '';
     contenedorTareasTerminadas.innerHTML = '';
-
-
+    
+    
     listadoTareasPendientes.forEach( tarea => {
       // por cada tarea inyectamos un nodo li
       contenedorTareasPendientes.innerHTML += `
       <li class="tarea" data-aos="fade-down">
-        <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
-        <div class="descripcion">
-          <p class="nombre">${tarea.description}</p>
-          <p class="timestamp">${tarea.createdAt}</p>
-        </div>
+      <button class="change" id="${tarea.id}"><i class="fa-regular fa-circle"></i></button>
+      <div class="descripcion">
+      <p class="nombre">${tarea.description}</p>
+      <p class="timestamp">${tarea.createdAt}</p>
+      </div>
       </li>
       `
     })
@@ -137,30 +141,31 @@ window.addEventListener("load", function () {
       // por cada tarea inyectamos un nodo li
       contenedorTareasTerminadas.innerHTML += `
       <li class="tarea" data-aos="fade-up">
-        <div class="hecha">
-          <i class="fa-regular fa-circle-check"></i>
-        </div>
-        <div class="descripcion">
-          <p class="nombre">${tarea.description}</p>
-          <div class="cambios-estados">
-            <button class="change incompleta" id="${tarea.id}" ><i class="fa-solid fa-rotate-left"></i></button>
-            <button class="borrar" id="${tarea.id}"><i class="fa-regular fa-trash-can"></i></button>
-          </div>
-        </div>
+      <div class="hecha">
+      <i class="fa-regular fa-circle-check"></i>
+      </div>
+      <div class="descripcion">
+      <p class="nombre">${tarea.description}</p>
+      <div class="cambios-estados">
+      <button class="change incompleta" id="${tarea.id}" ><i class="fa-solid fa-rotate-left"></i></button>
+      <button class="borrar" id="${tarea.id}"><i class="fa-regular fa-trash-can"></i></button>
+      </div>
+      </div>
       </li>
       `
     })
-
-      
+    
+    
     botonesCambioEstado();
+    botonBorrarTarea();
   }
-
+  
 	/* -------------------------------------------------------------------------- */
 	/*                  FUNCIÓN 6 - Cambiar estado de tarea [PUT]                 */
 	/* -------------------------------------------------------------------------- */
-
+  
 	function botonesCambioEstado() {
-
+    
     const nodoBotonesCambioEstado = document.querySelectorAll('.change');
 
     nodoBotonesCambioEstado.forEach(btn => {
