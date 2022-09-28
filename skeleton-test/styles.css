@@ -1,0 +1,77 @@
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+:root {
+	--skeleton-background: rgb(180, 170, 170);
+}
+body {
+	background-color: aqua;
+	display: flex;
+	flex-direction: column;
+	align-items:  center;
+	padding: 50px;
+}
+
+.skeleton {
+	width: 600px;
+	display: block;
+	margin: 10px;
+}
+
+.skeleton .image {
+	background-image: linear-gradient(
+		90deg,
+		#ce4141 0px,
+		#ededed 30px,
+		#e01212 60px
+	);
+	animation: refresh 2.5s infinite ease-in-out;
+}
+
+.skeleton .image {
+	height: 50px;
+	border-radius: 30px;
+}
+
+@keyframes refresh {
+	0% {
+		background-position: -52px;
+	}
+	100% {
+		background-position: 548px;
+	}
+}
+
+.loader {
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background: linear-gradient(
+		48deg,
+		rgba(2, 5, 36, 1) 0%,
+		rgba(2, 2, 58, 0.9) 25%,
+		rgba(4, 4, 55, 0.808) 50%,
+		rgba(2, 2, 58, 0.9) 75%,
+		rgba(1, 4, 74, 1) 100%
+	);
+	background-repeat: no-repeat;
+	
+}
+
+.dog {
+	width: 10vw;
+}
+
+.dots {
+	width: 5vw;
+	position: relative;
+	top: -1vw;
+}
